@@ -9,11 +9,7 @@
 </head>
 
 <body style="margin: 0; overflow: hidden;">
-<a-scene
-  vr-mode-ui="enabled: false"
-  embedded
-  arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
->
+<a-scene embedded arjs="sourceType: webcam">
   <a-camera gps-camera rotation-reader></a-camera>
   <a-box material="color: yellow" gps-entity-place="latitude: 43.290327; longitude: 41.625414"/>
 </a-scene>
