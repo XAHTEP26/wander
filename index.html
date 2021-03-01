@@ -27,15 +27,11 @@
   });*/
 
   const output2 = document.getElementById('output2');
-
   function handler(e) {
+    const alpha = typeof e.webkitCompassHeading === 'undefined' ? e.alpha : Math.abs(e.webkitCompassHeading - 360);
     const result = {
-      alpha: e.alpha,
-      beta: e.beta,
-      gamma: e.gamma,
-      absolute: e.absolute,
-      webkitCompassHeading: e.webkitCompassHeading,
-      heading: e.webkitCompassHeading || Math.abs(e.alpha - 360),
+      alpha: alpha.toFixed(),
+      beta: e.beta.toFixed(),
     };
     output2.textContent = JSON.stringify(result, null, 2);
   }
