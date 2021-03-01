@@ -9,10 +9,10 @@
   </style>
 </head>
 <body>
-<div class="output" id="output1"></div>
+<!--<div class="output" id="output1"></div>-->
 <div class="output" id="output2"></div>
 <script>
-  const output1 = document.getElementById('output1');
+  /*const output1 = document.getElementById('output1');
   navigator.geolocation.watchPosition(pos => {
     const result = {
       accuracy: pos.coords.accuracy,
@@ -24,19 +24,26 @@
       speed: pos.coords.speed,
     };
     output1.textContent = JSON.stringify(result, null, 2);
-  });
+  });*/
 
   const output2 = document.getElementById('output2');
-  window.addEventListener("deviceorientationabsolute", orient => {
+
+  function handler(e) {
     const result = {
-      alpha: orient.alpha,
-      beta: orient.beta,
-      gamma: orient.gamma,
-      absolute: orient.absolute,
+      alpha: e.alpha,
+      beta: e.beta,
+      gamma: e.gamma,
+      absolute: e.absolute,
+      webkitCompassHeading: e.webkitCompassHeading,
+      heading: e.webkitCompassHeading || Math.abs(e.alpha - 360),
     };
     output2.textContent = JSON.stringify(result, null, 2);
-    console.log(orient);
-  }, true);
+  }
+  if (typeof window.ondeviceorientationabsolute !== 'undefined') {
+    window.addEventListener("deviceorientationabsolute", handler, true);
+  } else if (typeof window.ondeviceorientation !== 'undefined') {
+    window.addEventListener("deviceorientation", handler, true);
+  }
 </script>
 </body>
 </html>
