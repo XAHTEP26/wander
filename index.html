@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html lang="ru">
+<head>
+  <title>Wander</title>
+  <style>
+    #output {
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
 <body>
 <div id="output"></div>
 <script>
   const output = document.getElementById('output');
+  let i = 0;
   navigator.geolocation.watchPosition(pos => {
-    output.textContent = JSON.stringify(pos);
-    console.log(pos);
+    const result = {
+      i: i++,
+      accuracy: pos.coords.accuracy,
+      altitude: pos.coords.altitude,
+      altitudeAccuracy: pos.coords.altitudeAccuracy,
+      heading: pos.coords.heading,
+      latitude: pos.coords.latitude,
+      longitude: pos.coords.longitude,
+      speed: pos.coords.speed,
+    };
+    output.textContent = JSON.stringify(result, null, 2);
   });
 </script>
 </body>
