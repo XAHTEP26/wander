@@ -3,19 +3,18 @@
 <head>
   <title>Wander</title>
   <style>
-    #output {
+    .output {
       white-space: pre-wrap;
     }
   </style>
 </head>
 <body>
-<div id="output"></div>
+<div class="output" id="output1"></div>
+<div class="output" id="output2"></div>
 <script>
-  const output = document.getElementById('output');
-  let i = 0;
+  const output1 = document.getElementById('output1');
   navigator.geolocation.watchPosition(pos => {
     const result = {
-      i: i++,
       accuracy: pos.coords.accuracy,
       altitude: pos.coords.altitude,
       altitudeAccuracy: pos.coords.altitudeAccuracy,
@@ -24,8 +23,21 @@
       longitude: pos.coords.longitude,
       speed: pos.coords.speed,
     };
-    output.textContent = JSON.stringify(result, null, 2);
+    output1.textContent = JSON.stringify(result, null, 2);
   });
+
+  const output2 = document.getElementById('output2');
+  //window.addEventListener("deviceorientationabsolute", handler, true);
+  window.addEventListener("deviceorientation", orient => {
+    const result = {
+      alpha: orient.alpha,
+      beta: orient.beta,
+      gamma: orient.gamma,
+      absolute: orient.absolute,
+    };
+    output2.textContent = JSON.stringify(result, null, 2);
+    console.log(orient);
+  }, true);
 </script>
 </body>
 </html>
