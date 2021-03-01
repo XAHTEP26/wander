@@ -30,8 +30,8 @@
   function handler(e) {
     const alpha = typeof e.webkitCompassHeading === 'undefined' ? e.alpha : Math.abs(e.webkitCompassHeading - 360);
     const result = {
-      alpha: alpha.toFixed(),
-      beta: e.beta.toFixed(),
+      alpha: alpha && alpha.toFixed(),
+      beta: alpha && e.beta.toFixed(),
     };
     output2.textContent = JSON.stringify(result, null, 2);
   }
