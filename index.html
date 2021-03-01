@@ -27,8 +27,7 @@
   });
 
   const output2 = document.getElementById('output2');
-  //window.addEventListener("deviceorientationabsolute", handler, true);
-  window.addEventListener("deviceorientation", orient => {
+  window.addEventListener("deviceorientationabsolute", orient => {
     const result = {
       alpha: orient.alpha,
       beta: orient.beta,
