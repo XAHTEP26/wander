@@ -4,3 +4,41 @@
 .output {
     white-space: pre-wrap;
 }
+
+.compass {
+    position: relative;
+    width: 100vmin;
+    height: 100vmin;
+    border-radius: 50%;
+    border: 1vmin solid black;
+
+    &__arrow {
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: 50%;
+        top: 50%;
+
+        &::before,
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: -10vmin;
+            width: 20vmin;
+            height: 50vmin;
+        }
+        
+        &::before {
+            bottom: 0;
+            background-color: red;
+            clip-path: polygon(50% 0, 100% 100%, 0 100%);
+        }
+
+        &::after {
+            top: 0;
+            background-color: blue;
+            clip-path: polygon(50% 100%, 0 0, 100% 0);
+        }
+    } 
+}
