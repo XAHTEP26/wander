@@ -42,17 +42,13 @@ if (
   typeof(DeviceOrientationEvent) !== 'undefined' &&
   typeof(DeviceOrientationEvent.requestPermission) === 'function'
 ) {
-  DeviceOrientationEvent.requestPermission()
-      .then((response) => {
-        if (response == 'granted') {
+  compass.addEventListener('click', () => {
+    DeviceOrientationEvent.requestPermission()
+        .then((response) => {
+          if (response !== 'granted') return;
           init();
-        }
-      })
-      .catch(console.error);
+        });
+  }, {once: true});
 } else {
-  try {
-    init();
-  } catch (e) {
-    console.log('Doesn\'t supported.');
-  }
+  init();
 }
