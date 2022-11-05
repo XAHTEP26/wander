@@ -26,11 +26,11 @@ function handler(e) {
     beta: alpha && e.beta.toFixed(),
   };
   output.textContent = JSON.stringify(result, null, 2);
-  if (alpha) {
-    arrow.style.transform = `rotateZ($(alpha)deg)`;
+  if (result.alpha) {
+    arrow.style.transform = `rotateZ($(result.alpha)deg)`;
   }
-  if (beta) {
-    compass.style.transform = `rotateX($(beta)deg)`;
+  if (result.beta) {
+    compass.style.transform = `rotateX($(result.beta)deg)`;
   }
 }
 if (typeof window.ondeviceorientationabsolute !== 'undefined') {
