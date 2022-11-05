@@ -1,8 +1,11 @@
 @import './css/reset';
 @import './css/base';
 
-.output {
-    white-space: pre-wrap;
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
 }
 
 .compass {
