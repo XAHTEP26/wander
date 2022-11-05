@@ -27,8 +27,21 @@ function handler(e) {
   }
 }
 
-if (typeof window.ondeviceorientationabsolute !== 'undefined') {
-  window.addEventListener('deviceorientationabsolute', handler, true);
-} else if (typeof window.ondeviceorientation !== 'undefined') {
-  window.addEventListener('deviceorientation', handler, true);
+if (
+  typeof(DeviceMotionEvent) !== 'undefined' &&
+  typeof(DeviceMotionEvent.requestPermission) === 'function'
+) {
+  DeviceMotionEvent.requestPermission()
+      .then((response) => {
+        if (response == 'granted') {
+          if (typeof window.ondeviceorientationabsolute !== 'undefined') {
+            window.addEventListener('deviceorientationabsolute', handler, true);
+          } else if (typeof window.ondeviceorientation !== 'undefined') {
+            window.addEventListener('deviceorientation', handler, true);
+          }
+        }
+      })
+      .catch(console.error);
+} else {
+  console.log('Doesn\'t supported.');
 }
