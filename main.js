@@ -27,10 +27,10 @@ function handler(e) {
   };
   output.textContent = JSON.stringify(result, null, 2);
   if (result.alpha) {
-    arrow.style.transform = `rotateZ($(result.alpha)deg)`;
+    arrow.style.transform = `rotateZ(${result.alpha}deg)`;
   }
   if (result.beta) {
-    compass.style.transform = `rotateX($(result.beta)deg)`;
+    compass.style.transform = `rotateX(${result.beta}deg)`;
   }
 }
 if (typeof window.ondeviceorientationabsolute !== 'undefined') {
