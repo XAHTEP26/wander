@@ -27,21 +27,32 @@ function handler(e) {
   }
 }
 
+/**
+ * Initialize.
+ */
+function init() {
+  if (typeof window.ondeviceorientationabsolute !== 'undefined') {
+    window.addEventListener('deviceorientationabsolute', handler, true);
+  } else if (typeof window.ondeviceorientation !== 'undefined') {
+    window.addEventListener('deviceorientation', handler, true);
+  }
+}
+
 if (
-  typeof(DeviceMotionEvent) !== 'undefined' &&
-  typeof(DeviceMotionEvent.requestPermission) === 'function'
+  typeof(DeviceOrientationEvent) !== 'undefined' &&
+  typeof(DeviceOrientationEvent.requestPermission) === 'function'
 ) {
-  DeviceMotionEvent.requestPermission()
+  DeviceOrientationEvent.requestPermission()
       .then((response) => {
         if (response == 'granted') {
-          if (typeof window.ondeviceorientationabsolute !== 'undefined') {
-            window.addEventListener('deviceorientationabsolute', handler, true);
-          } else if (typeof window.ondeviceorientation !== 'undefined') {
-            window.addEventListener('deviceorientation', handler, true);
-          }
+          init();
         }
       })
       .catch(console.error);
 } else {
-  console.log('Doesn\'t supported.');
+  try {
+    init();
+  } catch (e) {
+    console.log('Doesn\'t supported.');
+  }
 }
