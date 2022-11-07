@@ -7,32 +7,18 @@ init();
 
 async function init() {
   const isSupported = !!getEventName();
-  alert([0, isSupported]);
   if (!isSupported) return;
 
   const needPermission = typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function';
-  alert([1, needPermission]);
   if (!needPermission) {
     initListener();
     return;
   }
 
   const permission = await DeviceOrientationEvent.requestPermission();
-  alert([2, permission]);
   if (permission === 'granted') {
     initListener();
-    return;
   }
-
-  document.body.addEventListener(
-    'click',
-    async () => {
-      const permission = await DeviceOrientationEvent.requestPermission();
-      alert([3, permission]);
-      if (permission === 'granted') initListener();
-    },
-    {once: true}
-  );
 }
 
 function initListener() {
