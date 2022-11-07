@@ -1,8 +1,0 @@
-// Сброс стилей, чтобы страница выглядила одинаково во всех браузерах (ну почти)
-*,
-*::before,
-*::after {
-  all: unset;
-  box-sizing: border-box;
-  display: revert;
-}

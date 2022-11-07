@@ -4,7 +4,7 @@ module.exports = {
     'es2021': true,
   },
   'extends': [
-    'google',
+    'airbnb',
   ],
   'parserOptions': {
     'ecmaVersion': 'latest',
